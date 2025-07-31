@@ -1,0 +1,37 @@
+name: Build Anchor Contract
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: 1.70.0
+          override: true
+
+      - name: Install Node.js and Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install Yarn dependencies
+        run: yarn install
+        working-directory: ./tests  # optional if you have tests with package.json
+
+      - name: Install Anchor CLI
+        run: cargo install --git https://github.com/coral-xyz/anchor --tag v0.29.0 anchor-cli --locked
+
+      - name: Build Anchor Programs
+        run: anchor build
