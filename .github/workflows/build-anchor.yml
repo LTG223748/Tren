@@ -25,15 +25,13 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
-      - name: Install Yarn dependencies
-        run: yarn install
+      - name: Install npm dependencies
+        run: npm install
 
       - name: Install Anchor CLI
         run: cargo install --git https://github.com/coral-xyz/anchor --tag v0.29.0 anchor-cli --locked
 
       - name: Build Anchor Programs
         run: anchor build
+
 
