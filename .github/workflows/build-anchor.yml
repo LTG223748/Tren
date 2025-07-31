@@ -20,18 +20,20 @@ jobs:
           toolchain: 1.70.0
           override: true
 
-      - name: Install Node.js and Yarn
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+
+      - name: Install Yarn
+        run: npm install -g yarn
 
       - name: Install Yarn dependencies
         run: yarn install
-        working-directory: ./tests  # optional if you have tests with package.json
 
       - name: Install Anchor CLI
         run: cargo install --git https://github.com/coral-xyz/anchor --tag v0.29.0 anchor-cli --locked
 
       - name: Build Anchor Programs
         run: anchor build
+
