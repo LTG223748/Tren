@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Rust
+      - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: 1.70.0
@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Install Anchor CLI
-        run: cargo install --git https://github.com/coral-xyz/anchor --tag v0.29.0 anchor-cli --locked
+        run: npm install -g @coral-xyz/anchor-cli@0.29.0
 
       - name: Build Anchor Programs
         run: anchor build
