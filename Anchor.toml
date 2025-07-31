@@ -4,6 +4,9 @@
 seeds = false
 skip-lint = false
 
+[build]
+target = "sbf"  # <-- This tells Anchor to use the new SBF build target instead of legacy BPF
+
 [programs.localnet]
 test_contract = "61tgd4VSLsoM53qWgdhGkMrYQeaXB7HiYSJrCPVGvjhd"
 
